@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import HeroHeadline from "@/components/ui/HeroHeadline";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionLabel from "@/components/ui/SectionLabel";
 import MarqueeBar from "@/components/ui/MarqueeBar";
@@ -14,7 +13,7 @@ import { SimpleTree } from "@/components/ui/SimpleTree";
 import { Gallery6 } from "@/components/ui/gallery6";
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 import { StaggerText } from "@/components/ui/stagger-text";
-import { MorphingTextReveal } from "@/components/ui/morphing-text-reveal";
+import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
 import { projects } from "@/lib/data/work";
 
 export default function Home() {
@@ -62,7 +61,15 @@ export default function Home() {
             style={{ color: "var(--accent)" }}
           />
 
-          <HeroHeadline />
+          <div 
+            className="relative -mx-6 md:-mx-16" 
+            style={{ height: "clamp(220px, 40vw, 500px)" }}
+          >
+            <ParticleTextEffect
+              words={["WE BUILD", "BRANDS", "THAT MOVE."]}
+              staggerDelay={1200}
+            />
+          </div>
 
           <div
             className="flex flex-col md:flex-row md:items-end justify-between mt-10 gap-8 animate-fade-up"
@@ -103,36 +110,16 @@ export default function Home() {
               className="font-poppins font-[800] mt-4 leading-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "var(--white)" }}
             >
-              <MorphingTextReveal
-                text="We make the internet"
-                morphSpeed={55}
-                glitchOnHover={true}
-                className="font-poppins font-[800] leading-tight"
-                style={{ fontSize: "inherit", color: "inherit" }}
-              />
-              <div className="flex items-baseline gap-[0.3em]">
-                <MorphingTextReveal
-                  text="work"
-                  morphSpeed={50}
-                  glitchOnHover={true}
-                  className="font-poppins font-[800] leading-tight"
-                  style={{ fontSize: "inherit", color: "inherit" }}
-                />
-                <MorphingTextReveal
-                  text="harder"
-                  morphSpeed={45}
-                  glitchOnHover={true}
-                  className="font-poppins font-[800] leading-tight italic"
-                  style={{ fontSize: "inherit", color: "var(--accent)" }}
-                />
-              </div>
-              <MorphingTextReveal
-                text="for your business."
-                morphSpeed={60}
-                glitchOnHover={true}
-                className="font-poppins font-[800] leading-tight"
-                style={{ fontSize: "inherit", color: "inherit" }}
-              />
+            <VerticalCutReveal
+              splitBy="characters"
+              staggerDuration={0.015}
+              staggerFrom="first"
+              containerClassName="font-poppins font-[800] leading-tight"
+            >
+              {`We make the internet
+work harder
+for your business.`}
+            </VerticalCutReveal>
             </div>
             <StaggerText
               text="We're a lean, obsessive team of strategists, developers, and marketers. We don't sell packages — we build growth systems."
@@ -195,13 +182,13 @@ export default function Home() {
                   }}
                 >
                   <span className="block font-poppins font-[900] text-lg" style={{ color: "var(--accent)" }}>{card.num}</span>
-                  <MorphingTextReveal
-                    text={card.title}
-                    morphSpeed={50}
-                    glitchOnHover={true}
-                    className="font-poppins font-bold text-xl mt-2"
-                    style={{ color: "var(--white)" }}
-                  />
+                  <VerticalCutReveal
+                    splitBy="words"
+                    staggerDuration={0.05}
+                    containerClassName="font-poppins font-bold text-xl mt-2"
+                  >
+                    {card.title}
+                  </VerticalCutReveal>
                   <StaggerText
                     text={card.text}
                     direction="bottom"
@@ -222,13 +209,14 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-16">
           <div>
             <SectionLabel text="What We Do" />
-            <MorphingTextReveal
-              text="Six ways we accelerate growth."
-              morphSpeed={50}
-              glitchOnHover={true}
-              className="font-poppins font-[800] text-3xl md:text-5xl mt-4"
+            <VerticalCutReveal
+              splitBy="words"
+              staggerDuration={0.05}
+              containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4"
               style={{ color: "var(--white)" }}
-            />
+            >
+              Six ways we accelerate growth.
+            </VerticalCutReveal>
           </div>
           <StaggerText
             text="End-to-end digital services, from strategy to software to scale."
@@ -269,13 +257,14 @@ export default function Home() {
       <section className="section-border py-12 px-6 md:py-16 md:px-16 overflow-hidden">
         <div className="mb-12 text-center">
           <SectionLabel text="Wall of Trust" />
-          <MorphingTextReveal
-            text="The words of our partners."
-            morphSpeed={50}
-            glitchOnHover={true}
-            className="font-poppins font-[800] text-3xl md:text-5xl mt-4"
+          <VerticalCutReveal
+            splitBy="words"
+            staggerDuration={0.05}
+            containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4 w-full justify-center"
             style={{ color: "var(--white)" }}
-          />
+          >
+            The words of our partners.
+          </VerticalCutReveal>
         </div>
 
         <div className="relative -mx-6 md:-mx-16">
@@ -285,12 +274,35 @@ export default function Home() {
 
       {/* ─── 1.7 CTA BAND ─────────────────────── */}
       <section className="section-border relative py-12 md:py-20 px-6 md:px-16 text-center overflow-hidden">
-        {/* Particle text canvas background */}
-        <div className="relative z-0">
-          <ParticleTextEffect
-            words={["START", "SOMETHING", "GREAT."]}
-            staggerDelay={1200}
-          />
+        {/* Stacked text reveal */}
+        <div className="relative z-0 flex flex-col items-center gap-2 md:gap-4 py-8 md:py-16">
+          <VerticalCutReveal
+            splitBy="characters"
+            staggerDuration={0.03}
+            containerClassName="font-poppins font-[900] text-[clamp(3rem,10vw,8rem)] leading-[1] tracking-tighter"
+            style={{ color: "var(--white)" }}
+          >
+            START
+          </VerticalCutReveal>
+          <VerticalCutReveal
+            splitBy="characters"
+            staggerDuration={0.03}
+            staggerFrom="center"
+            containerClassName="font-poppins font-[900] text-[clamp(2.5rem,8vw,6.5rem)] leading-[1] tracking-tighter"
+            style={{ color: "var(--accent)" }}
+          >
+            SOMETHING
+          </VerticalCutReveal>
+          <VerticalCutReveal
+            splitBy="characters"
+            staggerDuration={0.03}
+            staggerFrom="last"
+            reverse={true}
+            containerClassName="font-poppins font-[900] text-[clamp(3rem,10vw,8rem)] leading-[1] tracking-tighter"
+            style={{ color: "var(--accent-bright)" }}
+          >
+            GREAT.
+          </VerticalCutReveal>
         </div>
 
         {/* CTA buttons overlaid below the canvas */}

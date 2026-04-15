@@ -210,8 +210,30 @@ export function SimpleTree() {
 
   useEffect(() => {
     setup()
-    draw()
-    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current) }
+    
+    let isVisible = false
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting
+    }, { threshold: 0.1 })
+    
+    if (canvasRef.current?.parentElement) {
+      observer.observe(canvasRef.current.parentElement)
+    }
+
+    const runDraw = () => {
+      if (isVisible) {
+        draw()
+      } else {
+        animationRef.current = requestAnimationFrame(runDraw)
+      }
+    }
+    
+    runDraw()
+
+    return () => {
+      observer.disconnect()
+      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+    }
   }, [setup, draw])
 
   return (
