@@ -3,25 +3,186 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black: #0D0414;
+  --white: #F5EBFA;
+  --accent: #A56ABD;
+  --accent-dark: #6E3482;
+  --accent-bright: #C084D8;
+  --muted: #9B8AA8;
+  --border: rgba(165,106,189,0.12);
+  --surface: rgba(165,106,189,0.05);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-poppins), sans-serif;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* ─── Scroll Performance ──────────── */
+
+section {
+  content-visibility: auto;
+}
+
+canvas {
+  will-change: transform;
+}
+
+/* ─── Morph Text Animations ───────── */
+
+@keyframes morphChar {
+  0%   { opacity: 0; transform: translateY(12px) scale(0.85); }
+  50%  { opacity: 0.7; transform: translateY(-3px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-2px); }
+  40%      { transform: translateX(2px); }
+  60%      { transform: translateX(-1px); }
+  80%      { transform: translateX(1px); }
+}
+
+.morph-char {
+  animation: morphChar 0.4s ease-out both;
+}
+
+.glitch-effect {
+  animation: glitch 0.3s ease-in-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes blobpulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%      { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to   { width: 60px; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-blob-pulse {
+  animation: blobpulse 6s ease-in-out infinite;
+}
+
+.animate-line-grow {
+  animation: lineGrow 1.5s ease-out 1s both;
+}
+
+/* ─── Noise Overlay ────────────────── */
+
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.03;
+}
+
+/* ─── Grid Background ─────────────── */
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(165,106,189,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(165,106,189,0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ─── Outline Text ─────────────────── */
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(245,235,250,0.3);
+  color: transparent;
+}
+
+/* ─── Section Divider ──────────────── */
+
+.section-border {
+  border-top: 1px solid var(--border);
+}
+
+/* ─── Service Card Bottom Line ─────── */
+
+.card-hover-line::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.card-hover-line:hover::before {
+  transform: scaleX(1);
+}
+
+/* ─── Work Row Hover Line ──────────── */
+
+.work-row::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+  transition: left 0.4s ease;
+}
+
+.work-row:hover::before {
+  left: 0;
+}
+
+/* ─── Scrollbar ────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(165,106,189,0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(165,106,189,0.4);
 }
