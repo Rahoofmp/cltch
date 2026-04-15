@@ -86,7 +86,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         "text-[1rem] sm:text-[1.1rem] font-semibold leading-relaxed",
         isCenter ? "text-white" : "text-[var(--white)]"
       )}>
-        "{testimonial.quote}"
+        &ldquo;{testimonial.quote}&rdquo;
       </h3>
       
       <div className={cn(

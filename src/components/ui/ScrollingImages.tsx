@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
 import { ReactLenis } from "@studio-freight/react-lenis"
 import { useRef } from "react"
 
@@ -38,7 +38,7 @@ const StickyCard = ({
   i: number
   title: string
   src: string
-  progress: any
+  progress: MotionValue<number>
   range: [number, number]
   targetScale: number
 }) => {

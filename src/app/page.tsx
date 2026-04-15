@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import HeroHeadline from "@/components/ui/HeroHeadline";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionLabel from "@/components/ui/SectionLabel";
@@ -16,13 +15,10 @@ import { Gallery6 } from "@/components/ui/gallery6";
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 import { StaggerText } from "@/components/ui/stagger-text";
 import { MorphingTextReveal } from "@/components/ui/morphing-text-reveal";
-import { services } from "@/lib/data/services";
 import { projects } from "@/lib/data/work";
-import { testimonials } from "@/lib/data/testimonials";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const t = testimonials[0];
 
   return (
     <>

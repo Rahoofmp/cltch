@@ -3,13 +3,6 @@
 import * as React from "react"
 import { HTMLMotionProps, Transition, motion, useInView } from "motion/react"
 import { cn } from "@/lib/utils"
-
-const easeTransitions = {
-  default: [0.25, 0.1, 0.25, 1],
-  transform: [0.42, 0, 0.58, 1],
-  opacity: [0.25, 0.1, 0.25, 1],
-  clipPath: [0.6, 0.04, 0.98, 0.335],
-}
 export type TransformDirectionType = "top" | "bottom" | "left" | "right" | "z"
 export const transformVariants = (direction?: TransformDirectionType) => ({
   hidden: {
