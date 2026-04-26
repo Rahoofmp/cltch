@@ -54,6 +54,7 @@ interface staggerTextProps extends HTMLMotionProps<"div"> {
   transition?: Transition
   direction?: TransformDirectionType
   className?: string
+  once?: boolean
 }
 function StaggerText({
   text,
@@ -61,13 +62,14 @@ function StaggerText({
   transition,
   direction,
   className,
+  once = true,
   ...props
 }: staggerTextProps) {
   const words = text.split(" ")
   const ref = React.useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, {
-    once: false,
-    amount: 0.3,
+    once: once,
+    amount: 0.1,
   })
 
   return (

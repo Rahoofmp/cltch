@@ -27,6 +27,7 @@ interface TextProps {
   onStart?: () => void
   onComplete?: () => void
   autoStart?: boolean
+  once?: boolean
 }
 
 export interface VerticalCutRevealRef {
@@ -59,12 +60,13 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
       onStart,
       onComplete,
       autoStart = true,
+      once = true,
       ...props
     },
     ref
   ) => {
     const containerRef = useRef<HTMLSpanElement>(null)
-    const inView = useInView(containerRef, { amount: 0.3 })
+    const inView = useInView(containerRef, { amount: 0.1 })
     const text = typeof children === "string" ? children : children?.toString() || ""
     const [isAnimating, setIsAnimating] = useState(false)
 
@@ -144,11 +146,11 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
       if (autoStart) {
         if (inView) {
           startAnimation()
-        } else {
+        } else if (!once) {
           setIsAnimating(false)
         }
       }
-    }, [autoStart, inView, startAnimation])
+    }, [autoStart, inView, startAnimation, once])
 
     const variants = {
       hidden: { y: reverse ? "-100%" : "100%" },

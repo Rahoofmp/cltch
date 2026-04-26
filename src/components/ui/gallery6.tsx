@@ -4,6 +4,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { StaggerText } from "./stagger-text";
+import { VerticalCutReveal } from "./vertical-cut-reveal";
 import {
   Carousel,
   CarouselApi,
@@ -53,12 +55,14 @@ const Gallery6 = ({
       {/* Header row */}
       <div className="mb-10 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
         <div>
-          <h2
-            className="font-poppins font-[800] text-3xl md:text-5xl"
+          <VerticalCutReveal
+            splitBy="characters"
+            staggerDuration={0.015}
+            containerClassName="font-poppins font-[800] text-3xl md:text-5xl"
             style={{ color: "var(--white)" }}
           >
             {heading}
-          </h2>
+          </VerticalCutReveal>
         </div>
         <div className="mt-6 flex shrink-0 items-center justify-start gap-3 md:mt-0">
           <Button
@@ -182,12 +186,13 @@ const Gallery6 = ({
                   </div>
 
                   {/* Summary */}
-                  <div
+                  <StaggerText
+                    text={item.summary}
+                    direction="right"
+                    stagger={0.02}
                     className="mb-6 line-clamp-2 font-poppins text-sm leading-relaxed"
                     style={{ color: "var(--muted)" }}
-                  >
-                    {item.summary}
-                  </div>
+                  />
 
                   {/* Read more */}
                   <div

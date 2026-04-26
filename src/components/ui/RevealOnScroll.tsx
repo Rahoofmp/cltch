@@ -6,9 +6,15 @@ interface RevealOnScrollProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  once?: boolean;
 }
 
-export default function RevealOnScroll({ children, className = "", delay = 0 }: RevealOnScrollProps) {
+export default function RevealOnScroll({ 
+  children, 
+  className = "", 
+  delay = 0,
+  once = true 
+}: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,7 +26,8 @@ export default function RevealOnScroll({ children, className = "", delay = 0 }: 
         if (entry.isIntersecting) {
           el.style.opacity = "1";
           el.style.transform = "translateY(0)";
-        } else {
+          if (once) observer.unobserve(el);
+        } else if (!once) {
           el.style.opacity = "0";
           el.style.transform = "translateY(40px)";
         }

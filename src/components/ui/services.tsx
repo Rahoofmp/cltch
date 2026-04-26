@@ -3,6 +3,7 @@
 import React from 'react';
 import { services } from "@/lib/data/services";
 import RevealOnScroll from "./RevealOnScroll";
+import { StaggerText } from "./stagger-text";
 
 const ServicesSection = () => {
   // Map icons/data from services but use image pairs for the new design
@@ -70,9 +71,13 @@ const ServicesSection = () => {
                 <h3 className="text-xl font-bold tracking-tight mb-2" style={{ color: "var(--white)" }}>
                   {service.title}
                 </h3>
-                <p className="text-sm font-normal leading-relaxed line-clamp-2" style={{ color: "var(--muted)" }}>
-                  {service.description}
-                </p>
+                <StaggerText
+                  text={service.description}
+                  direction="right"
+                  stagger={0.02}
+                  className="text-sm font-normal leading-relaxed line-clamp-2"
+                  style={{ color: "var(--muted)" }}
+                />
               </div>
 
               {/* Hover Overlay Strip */}

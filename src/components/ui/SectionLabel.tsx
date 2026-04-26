@@ -9,7 +9,7 @@ interface SectionLabelProps {
 export default function SectionLabel({ text }: SectionLabelProps) {
   return (
     <RevealOnScroll>
-      <span className="inline-block font-poppins font-medium text-[0.75rem] tracking-[0.2em] uppercase text-[var(--accent)]">
+      <span className="inline-block font-poppins font-medium text-[0.75rem] tracking-[0.2em] uppercase text-[var(--accent)] mt-6">
         {text}
       </span>
     </RevealOnScroll>

@@ -56,8 +56,9 @@ export default function Home() {
         <div className="relative z-10  pl-6 pr-6 md:pl-16 md:pr-16 mt-4">
           <StaggerText
             text="Big ideas. Smart marketing. Solid software. We help ambitious brands scale without limits."
-            direction="bottom"
+            direction="right"
             stagger={0.03}
+            once={false}
             className="font-poppins font-medium text-[0.75rem] tracking-[0.2em] uppercase mb-3"
             style={{ color: "var(--accent)" }}
           />
@@ -78,8 +79,9 @@ export default function Home() {
           >
             <StaggerText
               text="We’re a full-stack creative agency helping ambitious brands grow through smart marketing and reliable, high-performance software."
-              direction="bottom"
+              direction="right"
               stagger={0.02}
+              once={false}
               className="font-poppins font-normal text-[1rem] max-w-[360px] leading-relaxed"
               style={{ color: "var(--muted)" }}
             />
@@ -124,14 +126,14 @@ for your business.`}
             </div>
             <StaggerText
               text="We’re a focused team of strategists, developers, and marketers who genuinely care about what we build. Instead of selling pre-made packages, we create tailored growth systems designed around your goals."
-              direction="bottom"
+              direction="right"
               stagger={0.02}
               className="font-poppins font-normal mt-8 max-w-lg leading-relaxed"
               style={{ color: "var(--muted)" }}
             />
             <StaggerText
               text="What started as a small team in Kerala has grown into partnerships with clients across India and beyond. We blend creative thinking with strong technical expertise to build solutions that actually make an impact."
-              direction="left"
+              direction="right"
               stagger={0.02}
               className="font-poppins font-normal mt-4 max-w-lg leading-relaxed"
               style={{ color: "var(--muted)" }}
@@ -187,18 +189,26 @@ for your business.`}
                     e.currentTarget.style.background = "var(--surface)";
                   }}
                 >
-                  <span className="block font-poppins font-[900] text-lg" style={{ color: "var(--accent)" }}>{card.num}</span>
                   <VerticalCutReveal
-                    splitBy="words"
-                    staggerDuration={0.05}
+                    splitBy="characters"
+                    staggerDuration={0.015}
+                    containerClassName="block font-poppins font-[900] text-lg"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    {card.num}
+                  </VerticalCutReveal>
+                  <VerticalCutReveal
+                    splitBy="characters"
+                    staggerDuration={0.015}
                     containerClassName="font-poppins font-bold text-xl mt-2"
+                    style={{ color: "var(--white)" }}
                   >
                     {card.title}
                   </VerticalCutReveal>
                   <StaggerText
                     text={card.text}
-                    direction="bottom"
-                    stagger={0.015}
+                    direction="right"
+                    stagger={0.02}
                     className="font-poppins font-normal text-sm mt-3 leading-relaxed"
                     style={{ color: "var(--muted)" }}
                   />
@@ -216,8 +226,8 @@ for your business.`}
           <div>
             <SectionLabel text="What We Do" />
             <VerticalCutReveal
-              splitBy="words"
-              staggerDuration={0.005}
+              splitBy="characters"
+              staggerDuration={0.015}
               containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4"
               style={{ color: "var(--white)" }}
             >
@@ -242,8 +252,8 @@ for your business.`}
         <div className="mb-16">
           <SectionLabel text="Why Choose Us" />
           <VerticalCutReveal
-            splitBy="words"
-            staggerDuration={0.05}
+            splitBy="characters"
+            staggerDuration={0.015}
             containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4"
             style={{ color: "var(--white)" }}
           >
@@ -255,48 +265,73 @@ for your business.`}
           {[
             {
               title: "We think before we build",
-              text: "Before we write a single line of code or run a single ad, we sit down and understand your business. What you're trying to achieve, who you're trying to reach, and what's getting in the way. Good work starts with good thinking.",
+              text: "Every project starts with understanding your business, not jumping into execution.",
+              type: "stagger"
             },
             {
               title: "Everything works together",
               text: "Your website, your marketing, your software they shouldn't feel like three separate things stitched together. We build them as one connected system, so each part makes the others stronger.",
+              type: "stagger"
             },
             {
               title: "We care about real results",
               text: "Likes and impressions are nice. But what actually matters is whether your business is growing. We focus on the numbers that move your business forward which is leads, revenue, retention.",
+              type: "vertical"
             },
             {
               title: "Simple is always better",
               text: "We believe the best solutions are the ones that are easy to understand and easy to use. No fluff, no unnecessary complexity just clear communication and work that makes sense.",
+              type: "stagger"
             },
             {
               title: "We take ownership",
               text: "When we take on a project, it becomes ours too. We don't clock out at 5 and forget about it. We think about your business, we check in, and we care about getting it right.",
+              type: "vertical"
             },
             {
               title: "Big ambitions are welcome here",
               text: "It doesn't matter if you're just starting out or already scaling we're built for brands that want more. We've grown from a small team in Kerala to working with clients across India and beyond, and we bring that same hunger to every partnership.",
+              type: "vertical"
             },
           ].map((item, i) => (
-            <RevealOnScroll key={i} delay={i * 100}>
+            <div
+              key={i}
+              className="group p-8 h-full transition-all duration-500 rounded-2xl border border-[var(--border)] hover:border-[rgba(165,106,189,0.3)]"
+              style={{ background: "var(--surface)" }}
+            >
               <div
-                className="group p-8 h-full transition-all duration-500 rounded-2xl border border-[var(--border)] hover:border-[rgba(165,106,189,0.3)]"
-                style={{ background: "var(--surface)" }}
+                className="w-12 h-12 rounded-full mb-6 flex items-center justify-center text-lg font-bold transition-all duration-500 group-hover:scale-110"
+                style={{ background: "rgba(165,106,189,0.1)", color: "var(--accent)" }}
               >
-                <div 
-                  className="w-12 h-12 rounded-full mb-6 flex items-center justify-center text-lg font-bold transition-all duration-500 group-hover:scale-110"
-                  style={{ background: "rgba(165,106,189,0.1)", color: "var(--accent)" }}
-                >
-                  {i + 1}
-                </div>
-                <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--accent)] transition-colors duration-300" style={{ color: "var(--white)" }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  {item.text}
-                </p>
+                {i + 1}
               </div>
-            </RevealOnScroll>
+              {item.type === "vertical" ? (
+                <VerticalCutReveal
+                  splitBy="characters"
+                  staggerDuration={0.015}
+                  containerClassName="text-xl font-bold mb-4 group-hover:text-[var(--accent)] transition-colors duration-300"
+                  style={{ color: "var(--white)" }}
+                >
+                  {item.title}
+                </VerticalCutReveal>
+              ) : (
+                <StaggerText
+                  text={item.title}
+                  direction="right"
+                  stagger={0.02}
+                  className="text-xl font-bold mb-4 group-hover:text-[var(--accent)] transition-colors duration-300 block"
+                  style={{ color: "var(--white)" }}
+                />
+              )}
+
+              <StaggerText
+                text={item.text}
+                direction="right"
+                stagger={0.02}
+                className="text-sm leading-relaxed"
+                style={{ color: "var(--muted)" }}
+              />
+            </div>
           ))}
         </div>
       </section>
@@ -325,11 +360,11 @@ for your business.`}
 
       {/* ─── 1.6 TESTIMONIALS ──────────────────── */}
       <section className="section-border px-6 md:py-16 md:px-16 overflow-hidden">
-        <div className="mb-12 text-center">
+        <div className=" text-center">
           <SectionLabel text="Wall of Trust" />
           <VerticalCutReveal
-            splitBy="words"
-            staggerDuration={0.05}
+            splitBy="characters"
+            staggerDuration={0.015}
             containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4 w-full justify-center"
             style={{ color: "var(--white)" }}
           >
@@ -382,7 +417,7 @@ for your business.`}
           <RevealOnScroll delay={200}>
             <StaggerText
               text="Whether you need a website, marketing, or a complete digital system—we’re here to make it simple and effective."
-              direction="bottom"
+              direction="right"
               stagger={0.02}
               className="font-poppins font-normal text-[1rem] mt-4 mb-8 max-w-2xl mx-auto leading-relaxed"
               style={{ color: "var(--muted)" }}
