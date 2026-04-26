@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import HeroHeadline from "@/components/ui/HeroHeadline";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionLabel from "@/components/ui/SectionLabel";
 import MarqueeBar from "@/components/ui/MarqueeBar";
@@ -26,7 +27,7 @@ export default function Home() {
       {/* ─── 1.1 HERO ──────────────────────────── */}
       <section
         ref={containerRef}
-        className="relative h-auto min-h-0 md:min-h-[100dvh] flex flex-col justify-start md:justify-center pt-[11vh] pb-6 md:pt-32 md:pb-2 overflow-hidden"
+        className="relative h-auto min-h-0 flex flex-col justify-start pt-[11vh] pb-6 md:pt-32 md:pb-2 overflow-hidden"
       >
         {/* bg layers */}
         <div className="absolute inset-0" style={{ background: "var(--black)" }} />
@@ -43,8 +44,8 @@ export default function Home() {
             zIndex: 0,
           }}
         />
-        {/* noise */}
-        <svg className="noise-overlay" xmlns="http://www.w3.org/2000/svg">
+        {/* noise overlay */}
+        <svg className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ zIndex: 1 }}>
           <filter id="noiseFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
           </filter>
@@ -52,18 +53,18 @@ export default function Home() {
         </svg>
 
         {/* content */}
-        <div className="relative z-10 pb-10 pl-6 pr-6 md:pl-16 md:pr-16">
+        <div className="relative z-10  pl-6 pr-6 md:pl-16 md:pr-16 mt-4">
           <StaggerText
-            text="Digital Marketing · Software Development · Kerala"
+            text="Big ideas. Smart marketing. Solid software. We help ambitious brands scale without limits."
             direction="bottom"
             stagger={0.03}
-            className="font-poppins font-medium text-[0.75rem] tracking-[0.2em] uppercase"
+            className="font-poppins font-medium text-[0.75rem] tracking-[0.2em] uppercase mb-3"
             style={{ color: "var(--accent)" }}
           />
 
-          <div 
-            className="relative -mx-6 md:-mx-16" 
-            style={{ height: "clamp(220px, 40vw, 500px)" }}
+          <div
+            className="relative -mx-6 md:-mx-16"
+            style={{ height: "clamp(120px, 25vw, 280px)" }}
           >
             <ParticleTextEffect
               words={["WE BUILD", "BRANDS", "THAT MOVE."]}
@@ -72,11 +73,11 @@ export default function Home() {
           </div>
 
           <div
-            className="flex flex-col md:flex-row md:items-end justify-between mt-10 gap-8 animate-fade-up"
+            className="flex flex-col md:flex-row md:items-end justify-between mt-4 gap-8 animate-fade-up"
             style={{ animationDelay: "0.55s" }}
           >
             <StaggerText
-              text="A full-stack creative agency powering ambitious brands with precision marketing and bulletproof software."
+              text="We’re a full-stack creative agency helping ambitious brands grow through smart marketing and reliable, high-performance software."
               direction="bottom"
               stagger={0.02}
               className="font-poppins font-normal text-[1rem] max-w-[360px] leading-relaxed"
@@ -101,7 +102,7 @@ export default function Home() {
       <MarqueeBar />
 
       {/* ─── 1.3 ABOUT TEASER ──────────────────── */}
-      <section className="section-border py-20 px-6 md:py-32 md:px-16">
+      <section className="section-border py-8 px-6 md:py-14 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           {/* LEFT */}
           <div>
@@ -110,26 +111,26 @@ export default function Home() {
               className="font-poppins font-[800] mt-4 leading-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "var(--white)" }}
             >
-            <VerticalCutReveal
-              splitBy="characters"
-              staggerDuration={0.015}
-              staggerFrom="first"
-              containerClassName="font-poppins font-[800] leading-tight"
-            >
-              {`We make the internet
+              <VerticalCutReveal
+                splitBy="characters"
+                staggerDuration={0.015}
+                staggerFrom="first"
+                containerClassName="font-poppins font-[800] leading-tight"
+              >
+                {`We make the internet
 work harder
 for your business.`}
-            </VerticalCutReveal>
+              </VerticalCutReveal>
             </div>
             <StaggerText
-              text="We're a lean, obsessive team of strategists, developers, and marketers. We don't sell packages — we build growth systems."
+              text="We’re a focused team of strategists, developers, and marketers who genuinely care about what we build. Instead of selling pre-made packages, we create tailored growth systems designed around your goals."
               direction="bottom"
               stagger={0.02}
               className="font-poppins font-normal mt-8 max-w-lg leading-relaxed"
               style={{ color: "var(--muted)" }}
             />
             <StaggerText
-              text="From a startup in Kerala to clients across India and beyond, we combine creative fire with technical depth."
+              text="What started as a small team in Kerala has grown into partnerships with clients across India and beyond. We blend creative thinking with strong technical expertise to build solutions that actually make an impact."
               direction="left"
               stagger={0.02}
               className="font-poppins font-normal mt-4 max-w-lg leading-relaxed"
@@ -151,18 +152,23 @@ for your business.`}
             {[
               {
                 num: "01",
-                title: "Strategy First, Always",
-                text: "Every project starts with a deep diagnostic. We research, map, and plan before a single pixel or line of code.",
+                title: "We think before we build",
+                text: "Every project starts with understanding your business, not jumping into execution.",
               },
               {
                 num: "02",
-                title: "Built to Convert",
-                text: "Beautiful is table stakes. We build digital experiences optimized for real-world outcomes: leads, sales, and retention.",
+                title: "Everything works together",
+                text: "Your marketing, website, and software aren’t separate—they’re built as one connected system.",
               },
               {
                 num: "03",
-                title: "Full-Stack Capability",
-                text: "Marketing without tech is noise. Tech without marketing is invisible. We deliver both — under one roof.",
+                title: "Focused on real results",
+                text: "We don’t chase vanity metrics. We focus on leads, growth, and long-term impact.",
+              },
+              {
+                num: "04",
+                title: "Simple and transparent",
+                text: "No unnecessary complexity. No confusing processes. Just clear communication and consistent progress.",
               },
             ].map((card, i) => (
               <RevealOnScroll key={card.num} delay={i * 120}>
@@ -204,22 +210,22 @@ for your business.`}
       </section>
 
       {/* ─── 1.4 SERVICES PREVIEW ──────────────── */}
-      <section className="section-border py-20 px-6 md:py-32 md:px-16">
+      <section className="section-border py-3 px-6 md:py-14 md:px-16">
         {/* header row */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-16">
           <div>
             <SectionLabel text="What We Do" />
             <VerticalCutReveal
               splitBy="words"
-              staggerDuration={0.05}
+              staggerDuration={0.005}
               containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4"
               style={{ color: "var(--white)" }}
             >
-              Six ways we accelerate growth.
+              Everything you need. All in one place.
             </VerticalCutReveal>
           </div>
           <StaggerText
-            text="End-to-end digital services, from strategy to software to scale."
+            text="We don’t offer random services we build complete digital systems that work together."
             direction="right"
             stagger={0.03}
             className="font-poppins font-normal text-sm md:max-w-[260px] leading-relaxed"
@@ -232,7 +238,7 @@ for your business.`}
       </section>
 
       {/* ─── 1.5 WORK SHOWCASE ─────────────────── */}
-      <section className="section-border relative py-20 px-6 md:py-32 md:px-16 overflow-hidden">
+      <section className="section-border relative py-8 px-6 md:py-14 md:px-16 overflow-hidden">
         {/* Generative Background */}
         <SimpleTree />
 
@@ -254,7 +260,7 @@ for your business.`}
       </section>
 
       {/* ─── 1.6 TESTIMONIALS ──────────────────── */}
-      <section className="section-border py-12 px-6 md:py-16 md:px-16 overflow-hidden">
+      <section className="section-border px-6 md:py-16 md:px-16 overflow-hidden">
         <div className="mb-12 text-center">
           <SectionLabel text="Wall of Trust" />
           <VerticalCutReveal
@@ -273,20 +279,20 @@ for your business.`}
       </section>
 
       {/* ─── 1.7 CTA BAND ─────────────────────── */}
-      <section className="section-border relative py-12 md:py-20 px-6 md:px-16 text-center overflow-hidden">
+      <section className="section-border relative py-12 md:py-8 px-6 md:px-16 text-center overflow-hidden">
         {/* Stacked text reveal */}
-        <div className="relative z-0 flex flex-col items-center gap-2 md:gap-4 py-8 md:py-16">
+        <div className="relative z-0 flex flex-col items-center gap-2 md:gap-4">
           <VerticalCutReveal
             splitBy="characters"
-            staggerDuration={0.03}
+            staggerDuration={0.02}
             containerClassName="font-poppins font-[900] text-[clamp(3rem,10vw,8rem)] leading-[1] tracking-tighter"
             style={{ color: "var(--white)" }}
           >
-            START
+            BUILD
           </VerticalCutReveal>
           <VerticalCutReveal
             splitBy="characters"
-            staggerDuration={0.03}
+            staggerDuration={0.02}
             staggerFrom="center"
             containerClassName="font-poppins font-[900] text-[clamp(2.5rem,8vw,6.5rem)] leading-[1] tracking-tighter"
             style={{ color: "var(--accent)" }}
@@ -295,21 +301,28 @@ for your business.`}
           </VerticalCutReveal>
           <VerticalCutReveal
             splitBy="characters"
-            staggerDuration={0.03}
+            staggerDuration={0.02}
             staggerFrom="last"
             reverse={true}
             containerClassName="font-poppins font-[900] text-[clamp(3rem,10vw,8rem)] leading-[1] tracking-tighter"
             style={{ color: "var(--accent-bright)" }}
           >
-            GREAT.
+            THAT GROWS.
           </VerticalCutReveal>
         </div>
 
         {/* CTA buttons overlaid below the canvas */}
         <div className="relative z-10 mt-8">
-          <SectionLabel text="Ready When You Are" />
+          <SectionLabel text="Let’s build something that actually grows your business." />
 
           <RevealOnScroll delay={200}>
+            <StaggerText
+              text="Whether you need a website, marketing, or a complete digital system—we’re here to make it simple and effective."
+              direction="bottom"
+              stagger={0.02}
+              className="font-poppins font-normal text-[1rem] mt-4 mb-8 max-w-2xl mx-auto leading-relaxed"
+              style={{ color: "var(--muted)" }}
+            />
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-8">
               <Link
                 href="/contact"

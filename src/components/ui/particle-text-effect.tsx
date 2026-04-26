@@ -112,9 +112,9 @@ function spawnCascade(canvasW: number): Vector2D {
 /* ──────────── Color palette per line ──────────── */
 
 const LINE_COLORS = [
-  { r: 192, g: 132, b: 216 }, // soft lavender   — START
-  { r: 165, g: 106, b: 189 }, // brand purple     — SOMETHING
-  { r: 140, g: 80, b: 170 },  // deep magenta     — GREAT.
+  { r: 245, g: 235, b: 250 }, // --white
+  { r: 165, g: 106, b: 189 }, // --accent
+  { r: 192, g: 132, b: 216 }, // --accent-bright
 ]
 
 /* ──────────── Component ──────────── */
@@ -136,7 +136,7 @@ export function ParticleTextEffect({
   const revealedRef = useRef(0)
   const mouseRef = useRef({ x: 0, y: 0, isOver: false })
 
-  const pixelSteps = 5
+  const pixelSteps = 6
 
   const revealLine = (lineIndex: number, canvas: HTMLCanvasElement) => {
     const offscreen = document.createElement("canvas")
@@ -144,8 +144,8 @@ export function ParticleTextEffect({
     offscreen.height = canvas.height
     const ctx = offscreen.getContext("2d")!
 
-    const fontSize = Math.min(canvas.width * 0.14, 130)
-    const lineHeight = fontSize * 1.15
+    const fontSize = Math.min(canvas.width * 0.08, 80)
+    const lineHeight = fontSize * 1.05
     const totalTextH = lineHeight * words.length
     const startY = (canvas.height - totalTextH) / 2 + lineHeight / 2
 
@@ -240,12 +240,24 @@ export function ParticleTextEffect({
         ctx.fillRect(0, 0, canvas.width, canvas.height)
         ctx.globalCompositeOperation = "source-over"
 
+        let anyMoving = false
         for (let li = 0; li < revealedRef.current; li++) {
           const particles = lineParticlesRef.current[li]
           if (!particles) continue
           for (const p of particles) {
             p.move()
             p.draw(ctx)
+            
+            // Check if still moving or far from target
+            if (!anyMoving) {
+              const dx = p.pos.x - p.target.x
+              const dy = p.pos.y - p.target.y
+              const distSq = dx * dx + dy * dy
+              const velSq = p.vel.x * p.vel.x + p.vel.y * p.vel.y
+              if (distSq > 1 || velSq > 0.01) {
+                anyMoving = true
+              }
+            }
           }
         }
 
@@ -262,11 +274,18 @@ export function ParticleTextEffect({
                 const force = (80 - dist) / 80
                 p.vel.x += (dx / dist) * force * 3.5
                 p.vel.y += (dy / dist) * force * 3.5
+                anyMoving = true
               }
             }
           }
         }
         ctx.restore()
+
+        // If nothing is moving and mouse isn't over, we can stop the loop
+        if (!anyMoving && !mouseRef.current.isOver) {
+          animationRef.current = 0
+          return
+        }
       }
       animationRef.current = requestAnimationFrame(animate)
     }
@@ -278,6 +297,7 @@ export function ParticleTextEffect({
         timers.push(setTimeout(() => {
           revealLine(i, canvas)
           revealedRef.current = i + 1
+          if (animationRef.current === 0) animate()
         }, i * staggerDelay))
       }
       animate()
@@ -305,7 +325,10 @@ export function ParticleTextEffect({
       mouseRef.current.y = (e.clientY - rect.top) * dpr
     }
 
-    const handlePointerEnter = () => mouseRef.current.isOver = true
+    const handlePointerEnter = () => {
+      mouseRef.current.isOver = true
+      if (animationRef.current === 0) animate()
+    }
     const handlePointerLeave = () => mouseRef.current.isOver = false
 
     window.addEventListener("resize", handleResize)
@@ -326,7 +349,7 @@ export function ParticleTextEffect({
   }, [words, staggerDelay])
 
   return (
-    <div className={`relative w-full ${className}`} style={{ minHeight: "clamp(320px, 45vw, 520px)" }}>
+    <div className={`relative w-full ${className}`} style={{ minHeight: "clamp(120px, 25vw, 280px)" }}>
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
     </div>
   )

@@ -88,14 +88,17 @@ canvas {
 
 .animate-fade-up {
   animation: fadeUp 0.8s ease-out both;
+  will-change: transform, opacity;
 }
 
 .animate-marquee {
   animation: marquee 20s linear infinite;
+  will-change: transform;
 }
 
 .animate-blob-pulse {
   animation: blobpulse 6s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .animate-line-grow {

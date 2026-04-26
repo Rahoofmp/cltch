@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Work", href: "/work" },
-  { label: "Blog", href: "/blog" },
+  { label: "Journal", href: "/journal" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -23,15 +23,39 @@ export default function Navbar() {
         background: "rgba(13,4,20,0.80)",
       }}
     >
-      <div className="flex items-center justify-between px-6 md:px-16 h-16">
+      <div className="flex items-center justify-between px-6 md:px-16 h-24 relative overflow-visible">
         {/* logo */}
         <Link
           href="/"
-          className="font-poppins font-[800] text-[1.4rem] tracking-[0.05em] transition-colors"
-          style={{ color: "var(--white)" }}
+          className="mt-4 left-6 md:left-16 top-0 transition-opacity hover:opacity-80 z-20 h-20 w-48 relative"
         >
-          CLUTCHBLUE
+          {/* Desktop Logo */}
+          <div className="hidden md:block">
+            <Image
+              src="/logo-01.png"
+              alt="ClutchBlue Logo"
+              width={230}
+              height={310}
+              className="absolute top-1/2 left-0 -translate-y-1/2 h-[310px] w-auto object-contain pointer-events-none"
+              priority
+            />
+          </div>
+          {/* Mobile Logo */}
+          <div className="md:hidden">
+            <Image
+              src="/logo-01.png"
+              alt="ClutchBlue Logo"
+              width={230}
+              height={310}
+              className="absolute top-1/2 left-0 -translate-y-1/2 h-[310px] w-auto object-contain pointer-events-none"
+              priority
+            />
+          </div>
         </Link>
+
+        {/* Spacer to reserve space for the absolute logo (230px + some gap) */}
+        <div className="hidden lg:block w-[250px] flex-shrink-0" />
+        <div className="lg:hidden w-[100px] md:w-[150px] flex-shrink-0" />
 
         {/* desktop links */}
         <div className="hidden md:flex items-center gap-8">

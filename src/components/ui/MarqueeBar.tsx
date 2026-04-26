@@ -28,7 +28,7 @@ export default function MarqueeBar() {
 
   return (
     <div
-      className="w-full overflow-hidden"
+      className="w-full overflow-hidden mt-6"
       style={{
         borderTop: "1px solid var(--border)",
         borderBottom: "1px solid var(--border)",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = [
   {
@@ -6,42 +7,45 @@ const footerLinks = [
     links: [
       { label: "About", href: "/about" },
       { label: "Services", href: "/services" },
-      { label: "Work", href: "/work" },
-      { label: "Blog", href: "/blog" },
+      { label: "Journal", href: "/journal" },
       { label: "Contact", href: "/contact" },
     ],
   },
   {
     heading: "Services",
     links: [
+      { label: "Web & Software Development", href: "/services/web-software-development" },
       { label: "Digital Marketing", href: "/services/digital-marketing" },
-      { label: "SEO & Content", href: "/services/seo-content" },
-      { label: "Web Development", href: "/services/web-development" },
-      { label: "Mobile Apps", href: "/services/mobile-apps" },
-      { label: "Brand & UI/UX", href: "/services/brand-ui-ux" },
-      { label: "Automation & AI", href: "/services/automation-ai" },
+      { label: "Branding & Content", href: "/services/branding-content" },
+      { label: "Complete Digital Management", href: "/services/complete-digital-management" },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="section-border py-20 px-6 md:px-16">
+    <footer className="section-border pt-20 pb-10 px-6 md:px-16">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* brand */}
         <div>
           <Link
             href="/"
-            className="font-poppins font-[800] text-[1.6rem] tracking-[0.05em]"
-            style={{ color: "var(--white)" }}
+            className="inline-block transition-opacity hover:opacity-80 mb-6 h-16 w-48 relative overflow-hidden flex items-start"
           >
-            CLUTCHBLUE
+            <Image
+              src="/logo-01.png"
+              alt="ClutchBlue Logo"
+              width={230}
+              height={310}
+              className="absolute top-1/2 left-0 -translate-y-1/2 h-[310px] w-auto object-contain"
+            />
           </Link>
           <p
             className="font-poppins font-normal text-sm mt-4 max-w-xs leading-relaxed"
             style={{ color: "var(--muted)" }}
           >
-            A full-stack digital agency from Kerala, India. Strategy, software, and growth — under one roof.
+            A full-stack digital agency specialized in Next.js & Laravel development. 
+            Contact us at <span className="text-white">clutchbluelimited@gmail.com</span>
           </p>
         </div>
 
@@ -73,7 +77,7 @@ export default function Footer() {
 
       {/* bottom bar */}
       <div
-        className="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        className="mt-10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
         style={{ borderTop: "1px solid var(--border)" }}
       >
         <p className="font-poppins font-normal text-[0.75rem]" style={{ color: "var(--muted)" }}>

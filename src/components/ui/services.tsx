@@ -9,40 +9,26 @@ const ServicesSection = () => {
   // In a real app, these would come from the service data itself.
   const serviceImages = [
     {
-      // Digital Marketing
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=512&h=512&fit=crop",
       overlayImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=512&h=512&fit=crop"
     },
     {
-      // SEO & Content
       image: "https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?w=512&h=512&fit=crop",
       overlayImage: "https://images.unsplash.com/photo-1432888622747-4eb9a8f2c20e?w=512&h=512&fit=crop"
     },
     {
-      // Web Development
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=512&h=512&fit=crop",
       overlayImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=512&h=512&fit=crop"
     },
     {
-      // Mobile Apps
       image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=512&h=512&fit=crop",
       overlayImage: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=512&h=512&fit=crop"
     },
-    {
-      // Brand & UI/UX
-      image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=512&h=512&fit=crop",
-      overlayImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=512&h=512&fit=crop"
-    },
-    {
-      // Automation & AI
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=512&h=512&fit=crop",
-      overlayImage: "https://images.unsplash.com/photo-1531746790731-6c087fecd05a?w=512&h=512&fit=crop"
-    }
   ];
 
   return (
     <div className="w-full font-sans">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
         {services.map((service, index) => (
           <RevealOnScroll key={service.slug} delay={index * 100}>
             <div
