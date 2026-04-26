@@ -118,7 +118,7 @@ export default function Home() {
                 containerClassName="font-poppins font-[800] leading-tight"
               >
                 {`We make the internet
-work harder
+work better
 for your business.`}
               </VerticalCutReveal>
             </div>
@@ -237,7 +237,71 @@ for your business.`}
         <ServicesSection />
       </section>
 
-      {/* ─── 1.5 WORK SHOWCASE ─────────────────── */}
+      {/* ─── 1.5 WHY CHOOSE US ─────────────────── */}
+      <section className="section-border py-14 px-6 md:px-16 overflow-hidden">
+        <div className="mb-16">
+          <SectionLabel text="Why Choose Us" />
+          <VerticalCutReveal
+            splitBy="words"
+            staggerDuration={0.05}
+            containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4"
+            style={{ color: "var(--white)" }}
+          >
+            Why businesses choose to work with us
+          </VerticalCutReveal>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              title: "We think before we build",
+              text: "Before we write a single line of code or run a single ad, we sit down and understand your business. What you're trying to achieve, who you're trying to reach, and what's getting in the way. Good work starts with good thinking.",
+            },
+            {
+              title: "Everything works together",
+              text: "Your website, your marketing, your software they shouldn't feel like three separate things stitched together. We build them as one connected system, so each part makes the others stronger.",
+            },
+            {
+              title: "We care about real results",
+              text: "Likes and impressions are nice. But what actually matters is whether your business is growing. We focus on the numbers that move your business forward which is leads, revenue, retention.",
+            },
+            {
+              title: "Simple is always better",
+              text: "We believe the best solutions are the ones that are easy to understand and easy to use. No fluff, no unnecessary complexity just clear communication and work that makes sense.",
+            },
+            {
+              title: "We take ownership",
+              text: "When we take on a project, it becomes ours too. We don't clock out at 5 and forget about it. We think about your business, we check in, and we care about getting it right.",
+            },
+            {
+              title: "Big ambitions are welcome here",
+              text: "It doesn't matter if you're just starting out or already scaling we're built for brands that want more. We've grown from a small team in Kerala to working with clients across India and beyond, and we bring that same hunger to every partnership.",
+            },
+          ].map((item, i) => (
+            <RevealOnScroll key={i} delay={i * 100}>
+              <div
+                className="group p-8 h-full transition-all duration-500 rounded-2xl border border-[var(--border)] hover:border-[rgba(165,106,189,0.3)]"
+                style={{ background: "var(--surface)" }}
+              >
+                <div 
+                  className="w-12 h-12 rounded-full mb-6 flex items-center justify-center text-lg font-bold transition-all duration-500 group-hover:scale-110"
+                  style={{ background: "rgba(165,106,189,0.1)", color: "var(--accent)" }}
+                >
+                  {i + 1}
+                </div>
+                <h3 className="text-xl font-bold mb-4 group-hover:text-[var(--accent)] transition-colors duration-300" style={{ color: "var(--white)" }}>
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  {item.text}
+                </p>
+              </div>
+            </RevealOnScroll>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── 1.6 WORK SHOWCASE ─────────────────── */}
       <section className="section-border relative py-8 px-6 md:py-14 md:px-16 overflow-hidden">
         {/* Generative Background */}
         <SimpleTree />

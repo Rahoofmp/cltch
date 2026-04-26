@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -85,11 +85,11 @@ export default function Navbar() {
         {/* mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden"
+          className="md:hidden z-50 relative"
           style={{ color: "var(--white)" }}
           aria-label="Toggle menu"
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          <MenuToggleIcon open={open} size={32} />
         </button>
       </div>
 
