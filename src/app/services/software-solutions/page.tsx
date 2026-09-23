@@ -81,7 +81,7 @@ export default function SoftwareSolutionsPage() {
       </section>
 
       {/* ─── CAPABILITIES GRID ─────────────────────── */}
-      <section className="section-border py-20 px-6 md:py-32 md:px-16 relative overflow-hidden" style={{ background: "var(--black)" }}>
+      <section className="section-border py-8 px-6 md:py-12 md:px-16 relative overflow-hidden" style={{ background: "var(--black)" }}>
         {/* Subtle background element */}
         <div
           className="absolute right-0 bottom-0 pointer-events-none"
@@ -138,7 +138,7 @@ export default function SoftwareSolutionsPage() {
       </section>
 
       {/* ─── CTA BAND ─────────────────────────── */}
-      <section className="section-border relative py-12 md:py-20 px-6 md:px-16 text-center overflow-hidden" style={{ background: "var(--black)" }}>
+      <section className="section-border relative py-10 md:py-12 px-6 md:px-16 text-center overflow-hidden" style={{ background: "var(--black)" }}>
         <div className="relative z-0 flex flex-col items-center gap-2 md:gap-4 py-8 md:py-16">
           <VerticalCutReveal
             splitBy="characters"

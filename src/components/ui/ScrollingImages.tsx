@@ -7,23 +7,23 @@ import { useRef } from "react"
 const projects = [
   {
     title: "Project 1",
-    src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop&crop=center",
+    src: "/nophoto.png",
   },
   {
     title: "Project 2",
-    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop&crop=center",
+    src: "/nophoto.png",
   },
   {
     title: "Project 3",
-    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=300&fit=crop&crop=center",
+    src: "/nophoto.png",
   },
   {
     title: "Project 4",
-    src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=300&fit=crop&crop=center",
+    src: "/nophoto.png",
   },
   {
     title: "Project 5",
-    src: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=500&h=300&fit=crop&crop=center",
+    src: "/nophoto.png",
   },
 ]
 

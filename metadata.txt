@@ -1,0 +1,49 @@
+ClutchBlue Website Metadata
+===========================
+
+1. Home / Root Page
+-------------------
+File: src/app/layout.tsx
+Meta Title: A trusted digital marketing and software development company in Malappuram | Kerala
+Meta Description: Digital marketing and software development company in Malappuram offering SEO, web design,software development, branding, and business growth solutions.
+OpenGraph Title: A trusted digital marketing and software development company in Malappuram | Kerala
+OpenGraph Description: Digital marketing and software development company in Malappuram offering SEO, web design,software development, branding, and business growth solutions.
+Keywords:
+  - digital marketing agency Kerala
+  - software development company India
+  - web development services Kozhikode
+  - Branding agency Kerala
+  - UI/UX design services
+  - SEO services India
+  - ClutchBlue agency
+  - full-stack development Kerala
+
+2. About Page
+-------------
+File: src/app/about/layout.tsx
+Meta Title: About ClutchBlue | Our Story & Philosophy
+Meta Description: Learn about ClutchBlue, a full-stack agency based in Kerala. We bridge the gap between engineering excellence and high-conversion marketing.
+
+3. Services Page
+----------------
+File: src/app/services/layout.tsx
+Meta Title: Services | Software Solutions & Digital Marketing
+Meta Description: Explore ClutchBlue's core expertise: Next.js development, Laravel solutions, UI/UX design, and growth-oriented SEO strategies in Kozhikode.
+
+4. Journal Page
+---------------
+File: src/app/journal/layout.tsx
+Meta Title: The Journal | Digital Experiments & Insights
+Meta Description: A curated archive of digital experiments, industry insights, and the technical obsession behind ClutchBlue's craft.
+
+5. Contact Page
+---------------
+File: src/app/contact/layout.tsx
+Meta Title: Contact Us | Start Your Digital Journey
+Meta Description: Ready to scale? Contact ClutchBlue for premium software development and digital marketing services. Based in Kozhikode, Kerala.
+
+6. 404 Not Found Page
+---------------------
+File: src/app/not-found.tsx
+Meta Title: 404 - Page Not Found | ClutchBlue
+Meta Description: The page you are looking for does not exist.

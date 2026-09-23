@@ -46,12 +46,12 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
       children,
       reverse = false,
       transition = {
-        type: "spring",
-        stiffness: 150,
-        damping: 25,
+        type: "tween",
+        ease: [0.25, 0.1, 0.25, 1],
+        duration: 0.5,
       },
       splitBy = "words",
-      staggerDuration = 0.3,
+      staggerDuration = 0.05,
       staggerFrom = "first",
       containerClassName,
       wordLevelClassName,
@@ -191,7 +191,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
             <span
               key={wordIndex}
               aria-hidden="true"
-              className={cn("inline-flex overflow-hidden", wordLevelClassName)}
+              className={cn("inline-flex overflow-hidden pb-[0.2em] -mb-[0.2em]", wordLevelClassName)}
             >
               {wordObj.characters.map((char, charIndex) => (
                 <span

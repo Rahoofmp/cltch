@@ -17,12 +17,18 @@ const config: Config = {
         muted: "var(--muted)",
         border: "var(--border)",
         surface: "var(--surface)",
+        background: "var(--black)",
+        foreground: "var(--white)",
+        input: "var(--surface)",
+        ring: "var(--accent)",
+        "muted-foreground": "var(--muted)",
+        "accent-foreground": "var(--white)",
       },
       fontFamily: {
         poppins: ["var(--font-poppins)", "sans-serif"],
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;

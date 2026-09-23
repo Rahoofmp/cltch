@@ -4,18 +4,21 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import CustomCursor from "@/components/ui/CustomCursor";
+import Script from "next/script";
 import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "ClutchBlue — Digital Marketing & Software Development Agency",
+  title: "A trusted digital marketing and software development company in Malappuram | Kerala",
   description:
-    "A full-stack creative agency powering ambitious brands with precision marketing and bulletproof software. Specialized in Web Development, Branding, and Digital Strategy.",
+    "Digital marketing and software development company in Malappuram offering SEO, web design,software development, branding, and business growth solutions.",
   metadataBase: new URL("https://clutchblue.com"),
   keywords: [
     "digital marketing agency Kerala",
@@ -28,9 +31,9 @@ export const metadata: Metadata = {
     "full-stack development Kerala",
   ],
   openGraph: {
-    title: "ClutchBlue — Digital Marketing & Software Development Agency",
+    title: "A trusted digital marketing and software development company in Malappuram | Kerala",
     description:
-      "A full-stack creative agency powering ambitious brands with precision marketing and bulletproof software. Based in Kerala, India.",
+      "Digital marketing and software development company in Malappuram offering SEO, web design,software development, branding, and business growth solutions.",
     url: "https://clutchblue.com",
     siteName: "ClutchBlue",
     type: "website",
@@ -45,12 +48,12 @@ export const metadata: Metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon.ico" },
     ],
+    shortcut: "/favicon.ico",
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     other: [
-      { rel: "android-chrome-192x192", url: "/android-chrome-192x192.png" },
-      { rel: "android-chrome-512x512", url: "/android-chrome-512x512.png" },
+      { rel: "mask-icon", url: "/favicon.ico", color: "#a56abd" },
     ],
   },
   manifest: "/site.webmanifest",
@@ -63,7 +66,7 @@ const professionalServiceJsonLd = {
   description:
     "A full-stack creative agency powering ambitious brands with precision marketing and bulletproof software.",
   url: "https://clutchblue.com",
-  telephone: "+91XXXXXXXXXX", // User should update with actual contact if needed
+  telephone: "+917356357436", // User should update with actual contact if needed
   address: {
     "@type": "PostalAddress",
     addressLocality: "Kozhikode",
@@ -91,6 +94,30 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
+          `}
+        </Script>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KP0QR784NC"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-KP0QR784NC');
+          `}
+        </Script>
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -101,6 +128,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <WhatsAppButton />
+          <CustomCursor />
         </SmoothScroll>
       </body>
     </html>

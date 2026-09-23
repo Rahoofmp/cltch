@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { StaggerText } from "./stagger-text";
 import { VerticalCutReveal } from "./vertical-cut-reveal";
+
 import {
   Carousel,
   CarouselApi,
@@ -186,13 +186,16 @@ const Gallery6 = ({
                   </div>
 
                   {/* Summary */}
-                  <StaggerText
+                  {/* <StaggerText
                     text={item.summary}
                     direction="right"
                     stagger={0.02}
                     className="mb-6 line-clamp-2 font-poppins text-sm leading-relaxed"
                     style={{ color: "var(--muted)" }}
-                  />
+                  /> */}
+                  <div className="relative mb-6 line-clamp-2 font-poppins text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    {item.summary}
+                  </div>
 
                   {/* Read more */}
                   <div

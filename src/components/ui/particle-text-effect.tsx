@@ -135,8 +135,13 @@ export function ParticleTextEffect({
   const lineParticlesRef = useRef<Particle[][]>([])
   const revealedRef = useRef(0)
   const mouseRef = useRef({ x: 0, y: 0, isOver: false })
+  const isMobileRef = useRef(false)
 
-  const pixelSteps = 6
+  useEffect(() => {
+    isMobileRef.current = window.innerWidth < 768
+  }, [])
+
+  const pixelSteps = isMobileRef.current ? 10 : 6
 
   const revealLine = (lineIndex: number, canvas: HTMLCanvasElement) => {
     const offscreen = document.createElement("canvas")
@@ -144,7 +149,12 @@ export function ParticleTextEffect({
     offscreen.height = canvas.height
     const ctx = offscreen.getContext("2d")!
 
-    const fontSize = Math.min(canvas.width * 0.08, 80)
+    const isMobile = window.innerWidth < 768
+    const baseSize = isMobile ? 0.16 : 0.08
+    const maxFontSize = isMobile ? 65 : 80
+    const dpr = window.devicePixelRatio || 1
+    const visualFontSize = Math.min((canvas.width / dpr) * baseSize, maxFontSize)
+    const fontSize = visualFontSize * Math.min(dpr, 2)
     const lineHeight = fontSize * 1.05
     const totalTextH = lineHeight * words.length
     const startY = (canvas.height - totalTextH) / 2 + lineHeight / 2
@@ -210,7 +220,11 @@ export function ParticleTextEffect({
 
     let isVisible = false
     const observer = new IntersectionObserver(([entry]) => {
+      const wasVisible = isVisible
       isVisible = entry.isIntersecting
+      if (isVisible && !wasVisible && animationRef.current === 0) {
+        animationRef.current = requestAnimationFrame(animate)
+      }
     }, { threshold: 0.1 })
     observer.observe(wrapper)
 
@@ -232,6 +246,7 @@ export function ParticleTextEffect({
     const timers: ReturnType<typeof setTimeout>[] = []
 
     const animate = () => {
+      let anyMoving = false
       if (isVisible) {
         const ctx = canvas.getContext("2d")!
         ctx.save()
@@ -240,7 +255,6 @@ export function ParticleTextEffect({
         ctx.fillRect(0, 0, canvas.width, canvas.height)
         ctx.globalCompositeOperation = "source-over"
 
-        let anyMoving = false
         for (let li = 0; li < revealedRef.current; li++) {
           const particles = lineParticlesRef.current[li]
           if (!particles) continue
@@ -287,7 +301,11 @@ export function ParticleTextEffect({
           return
         }
       }
-      animationRef.current = requestAnimationFrame(animate)
+      if (isVisible || anyMoving) {
+        animationRef.current = requestAnimationFrame(animate)
+      } else {
+        animationRef.current = 0
+      }
     }
 
     const startReveal = () => {
@@ -297,10 +315,10 @@ export function ParticleTextEffect({
         timers.push(setTimeout(() => {
           revealLine(i, canvas)
           revealedRef.current = i + 1
-          if (animationRef.current === 0) animate()
+          if (animationRef.current === 0) animationRef.current = requestAnimationFrame(animate)
         }, i * staggerDelay))
       }
-      animate()
+      if (animationRef.current === 0) animationRef.current = requestAnimationFrame(animate)
     }
 
     const revealObserver = new IntersectionObserver(([entry]) => {
@@ -349,7 +367,14 @@ export function ParticleTextEffect({
   }, [words, staggerDelay])
 
   return (
-    <div className={`relative w-full ${className}`} style={{ minHeight: "clamp(120px, 25vw, 280px)" }}>
+    <div 
+      className={`relative w-full ${className}`} 
+      style={{ 
+        minHeight: "clamp(240px, 35vw, 320px)",
+        aspectRatio: "16 / 9",
+        maxHeight: "500px"
+      }}
+    >
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
     </div>
   )

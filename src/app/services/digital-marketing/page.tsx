@@ -19,18 +19,18 @@ export default function DigitalMarketingPage() {
     },
     {
       num: "02",
-      title: "Conversion Advertising",
-      text: "Aggressive, highly targeted campaigns across Meta, Google, and LinkedIn engineered exclusively for maximum ROI and cost-per-acquisition efficiency."
+      title: "Lead Generation",
+      text: "Building automated systems that consistently deliver high-quality prospects to your sales funnel, ensuring steady business growth."
     },
     {
       num: "03",
-      title: "Brand Identity",
-      text: "Visual systems and messaging that position you as the premium choice in your market, transforming cold traffic into loyal brand advocates."
+      title: "Motion Graphics & Video",
+      text: "High-impact video creation and motion design that captures attention, tells your brand story, and drives meaningful user engagement."
     },
     {
       num: "04",
-      title: "Social Media Systems",
-      text: "We automate and scale organic social presence. Creating viral, authentic content that builds trust and captures attention."
+      title: "Strategic Branding",
+      text: "Visual systems and messaging that position you as the premium choice in your market, transforming cold traffic into loyal brand advocates."
     }
   ];
 
@@ -81,7 +81,7 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* ─── CAPABILITIES GRID ─────────────────────── */}
-      <section className="section-border py-20 px-6 md:py-32 md:px-16 relative overflow-hidden" style={{ background: "var(--black)" }}>
+      <section className="section-border py-8 px-6 md:py-12 md:px-16 relative overflow-hidden" style={{ background: "var(--black)" }}>
          {/* Subtle background element */}
          <div
           className="absolute left-0 bottom-0 pointer-events-none"
@@ -138,7 +138,7 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* ─── CTA BAND ─────────────────────────── */}
-      <section className="section-border relative py-12 md:py-20 px-6 md:px-16 text-center overflow-hidden" style={{ background: "var(--black)" }}>
+      <section className="section-border relative py-10 md:py-12 px-6 md:px-16 text-center overflow-hidden" style={{ background: "var(--black)" }}>
         <div className="relative z-0 flex flex-col items-center gap-2 md:gap-4 py-8 md:py-16">
           <VerticalCutReveal
             splitBy="characters"

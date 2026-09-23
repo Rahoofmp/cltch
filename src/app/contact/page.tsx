@@ -2,12 +2,18 @@
 
 import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
-import CustomCursor from "@/components/ui/CustomCursor";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
 import { StaggerText } from "@/components/ui/stagger-text";
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 export default function ContactPage() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -39,19 +45,29 @@ export default function ContactPage() {
 
   return (
     <>
-      <CustomCursor />
-
       {/* ─── HERO SECTION ──────────────────────── */}
-      <section className="relative min-h-[60vh] md:min-h-[70vh] flex flex-col justify-center items-center pt-24 md:pt-32 pb-12 md:pb-20 px-6 md:px-16 overflow-hidden text-center">
+      <section className="relative h-auto min-h-0 flex flex-col justify-start pt-24 pb-10 overflow-hidden">
+        {/* bg layers */}
         <div className="absolute inset-0" style={{ background: "var(--black)" }} />
-        <div className="absolute inset-0 grid-bg opacity-30" style={{ zIndex: 0 }} />
+        <div className="absolute inset-0 grid-bg" style={{ zIndex: 0 }} />
+        <div
+          className="absolute animate-blob-pulse pointer-events-none"
+          style={{
+            top: "-20%",
+            left: "-10%",
+            width: "60vh",
+            height: "60vh",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(165,106,189,0.15) 0%, transparent 60%)",
+            zIndex: 0,
+          }}
+        />
 
-        <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
-          <SectionLabel text="Start a Conversation" />
-
+        {/* content */}
+        <div className="relative z-10 px-6 md:px-16">
           <div
-            className="relative -mx-6 md:-mx-16 mt-4 md:mt-8 mb-4 md:mb-10 w-[100vw] max-w-[100vw]"
-            style={{ height: "clamp(180px, 40vw, 400px)" }}
+            className="relative -mx-6 md:-mx-16"
+            style={{ height: "clamp(220px, 30vw, 400px)" }}
           >
             <ParticleTextEffect
               words={["LET'S", "TALK", "GROWTH."]}
@@ -59,21 +75,23 @@ export default function ContactPage() {
             />
           </div>
 
-
-
-          <div className="mt-6 md:mt-8 flex justify-center">
+          <div
+            className="flex flex-col md:flex-row justify-between md:mt-0 gap-8 animate-fade-up"
+            style={{ animationDelay: "0.55s" }}
+          >
             <StaggerText
               text="Have a vision? We have the engineering and marketing expertise to bring it to life. Fill out the form below or reach out via WhatsApp."
-              direction="bottom"
-              stagger={0.015}
-              className="font-poppins font-normal text-base md:text-lg text-[var(--muted)] leading-relaxed max-w-2xl text-center"
+              direction="right"
+              stagger={0.02}
+              className="font-poppins font-normal text-[1rem] max-w-[600px] leading-relaxed"
+              style={{ color: "var(--muted)" }}
             />
           </div>
         </div>
       </section>
 
       {/* ─── CONTACT FORM SECTION ──────────────── */}
-      <section className="section-border py-20 px-6 md:px-16 relative">
+      <section className="section-border py-8 px-6 md:px-16 relative">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
           {/* Contact Info */}
@@ -151,15 +169,17 @@ export default function ContactPage() {
 
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-white/40 ml-1">Project Interest</label>
-                  <select
-                    name="project_type"
-                    className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-accent transition-colors [&>option]:bg-black"
-                  >
-                    <option value="software">Software Development</option>
-                    <option value="marketing">Digital Marketing</option>
-                    <option value="design">UI/UX & Branding</option>
-                    <option value="both">Full Digital Stack</option>
-                  </select>
+                  <Select name="project_type" defaultValue="software">
+                    <SelectTrigger className="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-white/10 rounded-none px-0 py-3 h-auto text-white focus:ring-0 focus:border-accent data-[state=open]:border-accent shadow-none hover:bg-transparent">
+                      <SelectValue placeholder="Select interest" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#0D0414] border-white/10 text-white">
+                      <SelectItem value="software">Software Development</SelectItem>
+                      <SelectItem value="marketing">Digital Marketing</SelectItem>
+                      <SelectItem value="design">UI/UX & Branding</SelectItem>
+                      <SelectItem value="both">Full Digital Stack</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">

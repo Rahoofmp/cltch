@@ -24,27 +24,26 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="section-border pt-20 pb-10 px-6 md:px-16">
+    <footer className="section-border pt-10 pb-4 px-6 md:px-16">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* brand */}
         <div>
           <Link
             href="/"
-            className="inline-block transition-opacity hover:opacity-80 mb-6 h-16 w-48 relative overflow-hidden flex items-start"
+            className="inline-block -ml-4 md:-ml-6 transition-opacity hover:opacity-80  h-[72px] w-[320px] relative flex items-center"
           >
             <Image
-              src="/logo-01.png"
+              src="/CB-LOGO-2.png"
               alt="ClutchBlue Logo"
-              width={230}
-              height={310}
-              className="absolute top-1/2 left-0 -translate-y-1/2 h-[310px] w-auto object-contain"
+              fill
+              className="object-contain object-left"
             />
           </Link>
           <p
             className="font-poppins font-normal text-sm mt-4 max-w-xs leading-relaxed"
             style={{ color: "var(--muted)" }}
           >
-            A full-stack digital agency specialized in Next.js & Laravel development. 
+            A full-stack digital agency specialized in Next.js & Laravel development.
             Contact us at <span className="text-white">clutchbluelimited@gmail.com</span>
           </p>
         </div>

@@ -55,7 +55,9 @@ interface staggerTextProps extends HTMLMotionProps<"div"> {
   direction?: TransformDirectionType
   className?: string
   once?: boolean
+  splitBy?: "words" | "characters"
 }
+
 function StaggerText({
   text,
   stagger = 0.05,
@@ -63,6 +65,7 @@ function StaggerText({
   direction,
   className,
   once = true,
+  splitBy = "words",
   ...props
 }: staggerTextProps) {
   const words = text.split(" ")
@@ -83,7 +86,17 @@ function StaggerText({
     >
       {words.map((word, index) => (
         <React.Fragment key={index}>
-          <Word transition={transition} direction={direction} word={word} />
+          {splitBy === "characters" ? (
+            <Word transition={transition} direction={direction} word={word} />
+          ) : (
+            <motion.span
+              className="inline-block"
+              variants={transformVariants(direction)}
+              transition={transition || transitionConfig}
+            >
+              {word}
+            </motion.span>
+          )}
           {index < words.length - 1 && " "}
         </React.Fragment>
       ))}

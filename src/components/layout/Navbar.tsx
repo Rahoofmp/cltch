@@ -17,40 +17,26 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur-md"
+      className="fixed top-0 left-0 w-full z-50"
       style={{
         borderBottom: "1px solid var(--border)",
-        background: "rgba(13,4,20,0.80)",
+        background: "var(--black)",
       }}
     >
       <div className="flex items-center justify-between px-6 md:px-16 h-24 relative overflow-visible">
         {/* logo */}
         <Link
           href="/"
-          className="mt-4 left-6 md:left-16 top-0 transition-opacity hover:opacity-80 z-20 h-20 w-48 relative"
+          onClick={() => setOpen(false)}
+          className="mt-4 -ml-4 md:-ml-6 top-0 transition-opacity hover:opacity-80 z-20 h-20 w-48 relative"
         >
-          {/* Desktop Logo */}
-          <div className="hidden md:block">
-            <Image
-              src="/logo-01.png"
-              alt="ClutchBlue Logo"
-              width={230}
-              height={310}
-              className="absolute top-1/2 left-0 -translate-y-1/2 h-[310px] w-auto object-contain pointer-events-none"
-              priority
-            />
-          </div>
-          {/* Mobile Logo */}
-          <div className="md:hidden">
-            <Image
-              src="/logo-01.png"
-              alt="ClutchBlue Logo"
-              width={230}
-              height={310}
-              className="absolute top-1/2 left-0 -translate-y-1/2 h-[310px] w-auto object-contain pointer-events-none"
-              priority
-            />
-          </div>
+          <Image
+            src="/CB-LOGO-2.png"
+            alt="ClutchBlue Logo"
+            fill
+            className="object-contain object-left"
+            priority
+          />
         </Link>
 
         {/* Spacer to reserve space for the absolute logo (230px + some gap) */}

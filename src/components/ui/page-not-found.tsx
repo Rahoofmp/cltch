@@ -9,7 +9,6 @@ export default function NotFoundPage() {
   return (
     <div className="w-full h-screen bg-black overflow-hidden flex justify-center items-center relative">
       <MessageDisplay />
-      <CharactersAnimation />
       <CircleAnimation />
     </div>
   );
@@ -29,7 +28,7 @@ function MessageDisplay() {
   }, []);
 
   return (
-    <div className="absolute flex flex-col justify-center items-center w-[90%] h-[90%] z-[100]">
+    <div className="absolute top-24 bottom-0 left-0 right-0 flex flex-col justify-center items-center px-4 z-40">
       <div 
         className={`flex flex-col items-center transition-opacity duration-1000 p-8 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -90,123 +89,6 @@ function MessageDisplay() {
         </div>
       </div>
     </div>
-  );
-}
-
-// 2. Characters Animation Component
-type StickFigure = {
-  top?: string;
-  bottom?: string;
-  src: string;
-  transform?: string;
-  speedX: number;
-  speedRotation?: number;
-};
-
-function CharactersAnimation() {
-  const charactersRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Define stick figures with their properties
-    const stickFigures: StickFigure[] = [
-      {
-        top: '0%',
-        src: 'https://raw.githubusercontent.com/RicardoYare/imagenes/9ef29f5bbe075b1d1230a996d87bca313b9b6a63/sticks/stick0.svg',
-        transform: 'rotateZ(-90deg)',
-        speedX: 1500,
-      },
-      {
-        top: '10%',
-        src: 'https://raw.githubusercontent.com/RicardoYare/imagenes/9ef29f5bbe075b1d1230a996d87bca313b9b6a63/sticks/stick1.svg',
-        speedX: 3000,
-        speedRotation: 2000,
-      },
-      {
-        top: '20%',
-        src: 'https://raw.githubusercontent.com/RicardoYare/imagenes/9ef29f5bbe075b1d1230a996d87bca313b9b6a63/sticks/stick2.svg',
-        speedX: 5000,
-        speedRotation: 1000,
-      },
-      {
-        top: '25%',
-        src: 'https://raw.githubusercontent.com/RicardoYare/imagenes/9ef29f5bbe075b1d1230a996d87bca313b9b6a63/sticks/stick0.svg',
-        speedX: 2500,
-        speedRotation: 1500,
-      },
-      {
-        top: '35%',
-        src: 'https://raw.githubusercontent.com/RicardoYare/imagenes/9ef29f5bbe075b1d1230a996d87bca313b9b6a63/sticks/stick0.svg',
-        speedX: 2000,
-        speedRotation: 300,
-      },
-      {
-        bottom: '5%',
-        src: 'https://raw.githubusercontent.com/RicardoYare/imagenes/9ef29f5bbe075b1d1230a996d87bca313b9b6a63/sticks/stick3.svg',
-        speedX: 0, // No horizontal movement
-      },
-    ];
-
-    // Clear existing content
-    if (charactersRef.current) {
-      charactersRef.current.innerHTML = '';
-    }
-
-    // Create and animate each stick figure
-    stickFigures.forEach((figure, index) => {
-      const stick = document.createElement('img');
-      stick.classList.add('characters');
-      stick.style.position = 'absolute';
-      stick.style.width = '18%';
-      stick.style.height = '18%';
-      stick.style.filter = 'invert(1) opacity(0.2)'; // Make them visible on black bg
-
-      // Set position
-      if (figure.top) stick.style.top = figure.top;
-      if (figure.bottom) stick.style.bottom = figure.bottom;
-      
-      // Set image source
-      stick.src = figure.src;
-      
-      // Set initial transform if specified
-      if (figure.transform) stick.style.transform = figure.transform;
-
-      // Append to the container
-      charactersRef.current?.appendChild(stick);
-
-      // Skip animation for the last figure (index 5)
-      if (index === 5) return;
-
-      // Horizontal movement animation
-      stick.animate(
-        [{ left: '100%' }, { left: '-20%' }],
-        { duration: figure.speedX, easing: 'linear', fill: 'forwards' }
-      );
-
-      // Skip rotation for the first figure (index 0)
-      if (index === 0) return;
-
-      // Rotation animation
-      if (figure.speedRotation) {
-        stick.animate(
-          [{ transform: 'rotate(0deg)' }, { transform: 'rotate(-360deg)' }],
-          { duration: figure.speedRotation, iterations: Infinity, easing: 'linear' }
-        );
-      }
-    });
-
-    // Cleanup function
-    return () => {
-      if (charactersRef.current) {
-        charactersRef.current.innerHTML = '';
-      }
-    };
-  }, []);
-
-  return (
-    <div
-      ref={charactersRef}
-      className="absolute w-full h-full pointer-events-none opacity-40"
-    />
   );
 }
 

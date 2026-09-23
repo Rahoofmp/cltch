@@ -5,7 +5,6 @@ import Link from "next/link";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionLabel from "@/components/ui/SectionLabel";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import CustomCursor from "@/components/ui/CustomCursor";
 import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 import { StaggerText } from "@/components/ui/stagger-text";
 import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
@@ -15,8 +14,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <CustomCursor />
-
       {/* ─── 1. HERO ──────────────────────────── */}
       <section
         ref={containerRef}
@@ -46,14 +43,14 @@ export default function AboutPage() {
         </svg>
 
         {/* content */}
-        <div className="relative z-10 px-6 md:px-16 md:mt-8">
-          <StaggerText
+        <div className="relative z-10 px-6 md:px-16 ">
+          {/* <StaggerText
             text="Our Story"
             direction="bottom"
             stagger={0.03}
             className="font-poppins font-medium text-[0.75rem] tracking-[0.2em] uppercase mt-4"
             style={{ color: "var(--accent)" }}
-          />
+          /> */}
 
           <div
             className="relative -mx-6 md:-mx-16"
@@ -66,14 +63,14 @@ export default function AboutPage() {
           </div>
 
           <div
-            className="flex flex-col md:flex-row justify-between mt-6 md:mt-0 gap-8 animate-fade-up"
+            className="flex flex-col md:flex-row justify-between md:mt-0 gap-8 animate-fade-up"
             style={{ animationDelay: "0.55s" }}
           >
             <StaggerText
               text="We don&apos;t just build websites. We build brands from zero to hero. We offer digital marketing solutions, branding, software development, and websites — everything you need under one roof."
-              direction="bottom"
+              direction="right"
               stagger={0.02}
-              className="font-poppins font-normal text-[1rem] md:text-[1.25rem] max-w-[600px] leading-relaxed"
+              className="font-poppins font-normal text-[1rem] max-w-[600px] leading-relaxed"
               style={{ color: "var(--muted)" }}
             />
           </div>
@@ -81,33 +78,59 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 2. OUR STORY & PHILOSOPHY ──────────── */}
-      <section className="section-border py-20 px-6 md:py-32 md:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+      <section className="section-border px-6 py-4  md:pb-2 md:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24">
           <div className="lg:col-span-5">
-            <SectionLabel text="The Philosophy" />
-            <VerticalCutReveal
-              splitBy="words"
-              staggerDuration={0.03}
-              containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-6 leading-tight"
+            <div className="mb-4">
+              <SectionLabel text="The Philosophy" />
+            </div>
+
+            <div
+              className="font-poppins font-[800] mt-4 leading-tight"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "var(--white)" }}
             >
-              Technology meets imagination.
-            </VerticalCutReveal>
+              <VerticalCutReveal
+                splitBy="characters"
+                staggerDuration={0.015}
+                staggerFrom="first"
+                containerClassName="font-poppins font-[800] leading-tight mb-2"
+              >
+                {`Technology meets imagination.`}
+              </VerticalCutReveal>
+            </div>
+
+            <div className="">
+              <StaggerText
+                text="Big ideas. Smart marketing. Solid software. We help ambitious brands scale without limits."
+                direction="right"
+                stagger={0.03}
+                once={false}
+                className="font-poppins font-medium text-[0.75rem] tracking-[0.2em] uppercase mb-3"
+                style={{ color: "var(--accent)" }}
+              />
+            </div>
+
+
+
           </div>
 
           <div className="lg:col-span-7 flex flex-col gap-8">
             <RevealOnScroll delay={100}>
               <p className="font-poppins text-[1.1rem] leading-relaxed" style={{ color: "var(--muted)" }}>
-                It started in Kerala with a simple premise: most marketing agencies didn&apos;t understand the underlying software architecture, and most software development houses didn&apos;t know how to market what they built. We saw the gap and decided to build something different.
+                It all started in Kerala with a simple observation: most marketing agencies didn&apos;t really understand how the technology behind a product works, and most software teams didn&apos;t know how to effectively market what they built. That gap made things harder for businesses than it needed to be.
+              </p>
+              <p className="font-poppins text-[1.1rem] leading-relaxed mt-4" style={{ color: "var(--muted)" }}>
+                So, we decided to do things differently.
               </p>
             </RevealOnScroll>
             <RevealOnScroll delay={200}>
               <p className="font-poppins text-[1.1rem] leading-relaxed" style={{ color: "var(--muted)" }}>
-                Today, <strong style={{ color: "var(--white)" }}>ClutchBlue</strong> operates at the exact intersection of robust engineering and high-conversion marketing. This unified approach prevents the common friction between building a product and actually selling it.
+                Today, <strong style={{ color: "var(--white)" }}>ClutchBlue</strong> works right at the intersection of strong engineering and smart, high-converting marketing. By bringing both under one roof, we remove the usual disconnect between building a product and actually getting it in front of the right people.
               </p>
             </RevealOnScroll>
             <RevealOnScroll delay={300}>
-              <p className="font-poppins text-[1.1rem] leading-relaxed" style={{ color: "var(--accent-bright)" }}>
-                We believe in code that moves fast, design that captures attention instantly, and strategies mapped directly to your bottom line.
+              <p className="font-poppins text-[1.1rem] leading-relaxed mb-4" style={{ color: "var(--accent-bright)" }}>
+                We focus on building fast, creating designs that grab attention, and crafting strategies that are directly tied to real business growth — not just numbers that look good on paper.
               </p>
             </RevealOnScroll>
           </div>
@@ -115,7 +138,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 3. CORE VALUES ──────────────────────── */}
-      <section className="section-border py-20 px-6 md:py-32 md:px-16 relative overflow-hidden">
+      <section className="section-border px-6 py-6 md:px-16 relative overflow-hidden">
         {/* Subtle background element */}
         <div
           className="absolute right-0 top-0 pointer-events-none"
@@ -126,11 +149,12 @@ export default function AboutPage() {
           }}
         />
 
-        <div className="mb-16 md:mb-24 relative z-10 text-center flex flex-col items-center">
+        <div className="mb-8 md:mb-14 relative z-10 text-center flex flex-col items-center">
           <SectionLabel text="What Drives Us" />
           <VerticalCutReveal
-            splitBy="words"
-            staggerDuration={0.05}
+            splitBy="characters"
+            staggerDuration={0.015}
+            staggerFrom="first"
             containerClassName="font-poppins font-[800] text-3xl md:text-5xl mt-4 max-w-2xl text-center"
             style={{ color: "var(--white)" }}
           >
@@ -143,22 +167,22 @@ export default function AboutPage() {
             {
               num: "01",
               title: "Excellence",
-              text: "Good isn&apos;t enough. We obsess over the details because the final 10% makes 90% of the impact.",
+              text: "We don&apos;t settle for &quot;good enough.&quot; It&apos;s the small details that make the biggest difference, and we make sure every part of our work reflects that.",
             },
             {
               num: "02",
               title: "Transparency",
-              text: "No black boxes. We communicate openly, explaining the &apos;why&apos; behind every strategy and line of code.",
+              text: "We believe in being open and honest. You&apos;ll always know what we&apos;re doing, why we&apos;re doing it, and how it helps your business grow.",
             },
             {
               num: "03",
               title: "Adaptability",
-              text: "The digital landscape shifts rapidly. We build flexible systems ready to evolve with new market demands.",
+              text: "Things change fast in the digital world, and we&apos;re built for that. We stay flexible, adjust quickly, and make sure your business keeps moving forward.",
             },
             {
               num: "04",
               title: "Impact First",
-              text: "Vanity metrics don&apos;t pay the bills. Every action we take is targeted towards generating measurable growth.",
+              text: "We focus on what actually matters — real results. Everything we do is aimed at helping your business grow, not just showing numbers that look impressive.",
             },
           ].map((value, i) => (
             <RevealOnScroll key={value.num} delay={i * 100}>
@@ -177,8 +201,11 @@ export default function AboutPage() {
                   e.currentTarget.style.background = "var(--surface)";
                 }}
               >
-                <div className="flex justify-between items-start mb-6">
-                  <span className="font-poppins font-[900] text-xl opacity-60 group-hover:opacity-100 transition-opacity" style={{ color: "var(--accent)" }}>{value.num}</span>
+                <div
+                  className="w-12 h-12 rounded-full mb-6 flex items-center justify-center text-lg font-bold transition-all duration-500 group-hover:scale-110 font-poppins"
+                  style={{ background: "rgba(165,106,189,0.1)", color: "var(--accent)" }}
+                >
+                  {i + 1}
                 </div>
                 <h3 className="font-poppins font-bold text-xl mb-3 text-white">
                   {value.title}
@@ -193,49 +220,68 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 4. STATS ROW ────────────────────────── */}
-      <section className="section-border py-16 px-6 md:py-24 md:px-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 max-w-5xl mx-auto">
+      <section className="section-border py-8 px-6 md:py-16 md:px-16 mt-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 max-w-5xl mx-auto pr-[80px]">
           <RevealOnScroll delay={0}>
-            <AnimatedCounter target={5} suffix="+" label="Years in Business" delay={0} />
+            <AnimatedCounter target={2} suffix="+" label="Years in Business" delay={0} />
           </RevealOnScroll>
           <RevealOnScroll delay={150}>
-            <AnimatedCounter target={120} suffix="+" label="Projects Delivered" delay={150} />
+            <AnimatedCounter target={10} suffix="+" label="Projects Delivered" delay={150} />
           </RevealOnScroll>
           <RevealOnScroll delay={300}>
-            <AnimatedCounter target={15} suffix="" label="Talented Minds" delay={300} />
+            <AnimatedCounter target={5} suffix="" label="Talented Minds" delay={300} />
           </RevealOnScroll>
           <RevealOnScroll delay={450}>
-            <AnimatedCounter target={98} suffix="%" label="Client Retention" delay={450} />
+            <AnimatedCounter target={100} suffix="%" label="Client Satisfaction" delay={450} />
           </RevealOnScroll>
         </div>
       </section>
 
       {/* ─── 5. CTA BAND ─────────────────────────── */}
-      <section className="section-border relative py-12 md:py-20 px-6 md:px-16 text-center overflow-hidden">
-        <div className="relative z-0 flex flex-col items-center gap-2 md:gap-4 py-8 md:py-16">
+      <section className="section-border relative py-12 md:py-8 px-6 md:px-16 text-center overflow-hidden">
+        {/* Stacked text reveal */}
+        <div className="relative z-0 flex flex-col items-center gap-2 md:gap-4">
           <VerticalCutReveal
             splitBy="characters"
-            staggerDuration={0.03}
-            containerClassName="font-poppins font-[900] text-[clamp(2.5rem,8vw,7rem)] leading-[1] tracking-tighter"
+            staggerDuration={0.02}
+            containerClassName="font-poppins font-[900] text-[clamp(3rem,10vw,8rem)] leading-[1] tracking-tighter"
             style={{ color: "var(--white)" }}
           >
             LET&apos;S
           </VerticalCutReveal>
           <VerticalCutReveal
             splitBy="characters"
-            staggerDuration={0.03}
+            staggerDuration={0.02}
             staggerFrom="center"
-            containerClassName="font-poppins font-[900] text-[clamp(2rem,7vw,6.5rem)] leading-[1] tracking-tighter"
+            containerClassName="font-poppins font-[900] text-[clamp(2.5rem,8vw,6.5rem)] leading-[1] tracking-tighter"
             style={{ color: "var(--accent)" }}
           >
-            COLLABORATE
+            BUILD
+          </VerticalCutReveal>
+          <VerticalCutReveal
+            splitBy="characters"
+            staggerDuration={0.02}
+            staggerFrom="last"
+            reverse={true}
+            containerClassName="font-poppins font-[900] text-[clamp(3rem,10vw,8rem)] leading-[1] tracking-tighter"
+            style={{ color: "var(--accent-bright)" }}
+          >
+            TOGETHER.
           </VerticalCutReveal>
         </div>
 
-        <div className="relative z-10 mt-4 md:mt-8">
+        {/* CTA buttons overlaid below the canvas */}
+        <div className="relative z-10 mt-8">
           <SectionLabel text="Your Turn" />
 
           <RevealOnScroll delay={200}>
+            <StaggerText
+              text="Ready to take your business to the next level? Whether you need a fresh brand identity, a high-performance website, or a complete scale-up strategy—we&apos;re building the future together."
+              direction="right"
+              stagger={0.02}
+              className="font-poppins font-normal text-[1rem] mt-4 mb-8 max-w-2xl mx-auto leading-relaxed"
+              style={{ color: "var(--muted)" }}
+            />
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-8">
               <Link
                 href="/contact"
